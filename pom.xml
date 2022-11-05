@@ -46,10 +46,6 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.capitole</groupId>
             <artifactId>ms-common</artifactId>
             <version>${ms-common.version}</version>
