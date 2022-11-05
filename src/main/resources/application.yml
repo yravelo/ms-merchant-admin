@@ -15,6 +15,12 @@ spring:
     hikari:
       maximum-pool-size: 200
       minimum-idle: 50
+  flyway:
+    table: flyway-merchant-admin-service
+    url: jdbc:h2:mem:merchant;MODE=MYSQL;LOCK_TIMEOUT=10000;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    enabled: true
+    user: sa
+    password: sa
 server:
   port: 9001
   error:
