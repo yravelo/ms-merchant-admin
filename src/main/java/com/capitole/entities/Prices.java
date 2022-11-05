@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
+import com.capitole.validator.CurrencyValidator;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -61,6 +63,7 @@ public class Prices extends Auditable {
    private BigDecimal price;
 
    @NotNull
+   @CurrencyValidator
    @Digits(integer = 3, fraction = 0)
    private Integer currencyIsoCode;
 
