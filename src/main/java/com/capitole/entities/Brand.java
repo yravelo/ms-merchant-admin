@@ -1,7 +1,5 @@
 package com.capitole.entities;
 
-import java.time.LocalDateTime;
-
 import static javax.persistence.GenerationType.IDENTITY;
 
 import javax.persistence.Entity;
@@ -25,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "brand", indexes = { @Index(name = "brand_name_ux", columnList = "name") })
-public class Brand {
+public class Brand extends Auditable {
 
    @Id
    @GeneratedValue(strategy = IDENTITY)
@@ -36,10 +34,5 @@ public class Brand {
    @Size(max = 100)
    @EqualsAndHashCode.Include
    private String name;
-
-   @NotNull
-   protected LocalDateTime createDateTime;
-
-   protected LocalDateTime updateDateTime;
 
 }
