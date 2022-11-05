@@ -11,11 +11,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 import com.capitole.model.CapitoleLocalDateTime;
+import com.capitole.utils.PriceUtils;
 import com.capitole.validator.CurrencyValidator;
 
 import lombok.AllArgsConstructor;
@@ -78,5 +81,11 @@ public class Prices extends Auditable {
    @Builder.Default
    @Digits(integer = 2, fraction = 2)
    private BigDecimal tax = ZERO;
+
+   @PrePersist
+   @PreUpdate
+   public void applyPrice() {
+      this.price = PriceUtils.calculatePrice(this.product.getStandardPrice(), this.discount, this.tax);
+   }
 
 }
