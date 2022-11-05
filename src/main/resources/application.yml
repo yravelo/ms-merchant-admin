@@ -1,0 +1,18 @@
+spring:
+  main:
+    banner-mode: log
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      enabled: true
+server:
+  port: 9001
+  error:
+    include-stacktrace: never
+    include-exception: false
+  tomcat:
+    max-threads: 100
+    accept-count: 100
+    min-spare-threads: 20
+  max-http-header-size: 10KB
