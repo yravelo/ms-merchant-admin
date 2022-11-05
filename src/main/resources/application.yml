@@ -6,6 +6,15 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
       enabled: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:merchant;MODE=MYSQL;LOCK_TIMEOUT=10000;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: sa
+    name: merchant
+    hikari:
+      maximum-pool-size: 200
+      minimum-idle: 50
 server:
   port: 9001
   error:
