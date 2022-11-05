@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.capitole.dto.RPricesReduce;
 import com.capitole.entities.Prices;
+import com.capitole.entities.Product;
 
 @Repository
 public interface PricesRepository extends PagingAndSortingRepository<Prices, Long> {
@@ -30,4 +31,6 @@ public interface PricesRepository extends PagingAndSortingRepository<Prices, Lon
          @Param("productId") Long productId,
          @Param("brandId") Long brandId);
    //@formatter:on
+
+   List<Prices> findByProduct(Product product);
 }

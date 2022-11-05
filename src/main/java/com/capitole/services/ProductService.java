@@ -9,12 +9,14 @@ import static com.capitole.exceptions.CapitoleExceptionCode.UNKNOWN_PRODUCT;
 import static com.capitole.validator.utils.ValidationUtils.validateEmpty;
 import static com.capitole.validator.utils.ValidationUtils.validateNotEmpty;
 
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.capitole.dto.RProduct;
 import com.capitole.entities.Product;
+import com.capitole.event.ProductEvent;
 import com.capitole.exceptions.CapitoleException;
 import com.capitole.mappers.ProductMappers;
 import com.capitole.repositories.ProductRepository;
@@ -29,6 +31,8 @@ public class ProductService {
 
    private final ProductRepository productRepository;
 
+   private final ApplicationEventPublisher eventPublisher;
+
    public RProduct create(RProduct rProduct) throws CapitoleException {
       Product product = mapper.fromDto(rProduct);
       validateEmpty(productRepository.findByCode(product.getCode()), PRODUCT_ALREADY_EXISTS_WITH_SAME_CODE, product.getCode());
@@ -41,7 +45,7 @@ public class ProductService {
       Product product = mapper.mergeEntity(rProduct, oProduct.get());
       validateEmpty(productRepository.findByCodeAndIdIsNot(product.getCode(), product.getId()), PRODUCT_ALREADY_EXISTS_WITH_SAME_CODE,
             product.getCode());
-
+      eventPublisher.publishEvent(new ProductEvent(this, product));
       return mapper.toDto(productRepository.save(product));
    }
 
