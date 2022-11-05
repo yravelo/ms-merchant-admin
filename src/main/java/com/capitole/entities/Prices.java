@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
+import com.capitole.model.CapitoleLocalDateTime;
 import com.capitole.validator.CurrencyValidator;
 
 import lombok.AllArgsConstructor;
@@ -53,9 +54,11 @@ public class Prices extends Auditable {
    private Integer priority = 0;
 
    @NotNull
+   @CapitoleLocalDateTime
    private LocalDateTime startDate;
 
    @NotNull
+   @CapitoleLocalDateTime
    private LocalDateTime endDate;
 
    @NotNull

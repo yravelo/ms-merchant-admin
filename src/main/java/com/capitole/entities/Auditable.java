@@ -11,6 +11,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.capitole.model.CapitoleLocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,9 +26,11 @@ public class Auditable implements Serializable {
 
    @NotNull
    @CreatedDate
+   @CapitoleLocalDateTime
    protected LocalDateTime createDateTime;
 
    @LastModifiedDate
+   @CapitoleLocalDateTime
    protected LocalDateTime updateDateTime;
 
 }
