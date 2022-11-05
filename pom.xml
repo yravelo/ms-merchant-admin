@@ -83,6 +83,10 @@
                 <groupId>ch.acanda.maven</groupId>
                 <artifactId>spring-banner-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
 
