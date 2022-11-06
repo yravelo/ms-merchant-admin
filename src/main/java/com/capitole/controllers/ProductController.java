@@ -31,13 +31,13 @@ public class ProductController {
    private final ProductService service;
 
    @PostMapping
-   public RProduct create(@RequestBody @Valid RProduct RProduct) throws CapitoleException {
-      return service.create(RProduct);
+   public RProduct create(@RequestBody @Valid RProduct product) throws CapitoleException {
+      return service.create(product);
    }
 
    @PutMapping
-   public RProduct update(@RequestBody @Valid RProduct RProduct) throws CapitoleException {
-      return service.update(RProduct);
+   public RProduct update(@RequestBody @Valid RProduct product) throws CapitoleException {
+      return service.update(product);
    }
 
    @DeleteMapping(path = "{id}")
