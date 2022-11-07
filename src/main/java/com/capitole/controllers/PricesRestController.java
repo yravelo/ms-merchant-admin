@@ -3,6 +3,8 @@ package com.capitole.controllers;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.capitole.security.EResource.PRICES_QUERY;
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capitole.dto.RPricesReduce;
 import com.capitole.model.CapitoleLocalDateTime;
+import com.capitole.security.Security;
 import com.capitole.services.PricesService;
 
 import lombok.AllArgsConstructor;
@@ -25,6 +28,7 @@ public class PricesRestController {
 
    private final PricesService service;
 
+   @Security(PRICES_QUERY)
    @GetMapping(path = "/query")
    public List<RPricesReduce> queryList(@RequestParam @CapitoleLocalDateTime LocalDateTime applicationDate, @RequestParam Long productId,
          @RequestParam Long brandId) {
